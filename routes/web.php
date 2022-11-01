@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,9 @@ Route::controller(WelcomeController::class)->group(function() {
     Route::get('/', 'showWelcomePage')->name('welcome');
 });
 
-Route::get('products/{title}-{id}', 'ProductController@showProduct')->name('product.show');
+Route::controller(ProductController::class)->group(function() {
+    Route::get('products/{title}-{id}', 'showProduct')->name('products.show');
+});
 
 // Auth::routes(['register' => false, 'reset' => false , 'verify' => false]);
 

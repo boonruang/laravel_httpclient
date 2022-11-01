@@ -34,7 +34,7 @@ class MarketService {
      */ 
 
      public function getProduct($id) {
-        return $this->makeRequest('GET','products/{$id}');
+        return $this->makeRequest('GET',"products/{$id}");
      }
      
      /**
