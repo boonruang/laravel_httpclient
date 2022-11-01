@@ -24,10 +24,17 @@ class MarketService {
      * Obtains the list of products from the API
      * @return stdClass
      */ 
-
      public function getProducts() {
         return $this->makeRequest('GET','products');
      }
+
+     /**
+     * Obtains the list of products from the API
+     * @return stdClass
+     */ 
+    public function getCategories() {
+        return $this->makeRequest('GET','categories');
+     }     
 
 }
 

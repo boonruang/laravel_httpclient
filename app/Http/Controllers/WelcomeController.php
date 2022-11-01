@@ -16,10 +16,11 @@ class WelcomeController extends Controller
     public function showWelcomePage()
     {
         $products = $this->marketService->getProducts();
-        // dd($products);
+        $categories = $this->marketService->getCategories();
 
         return view('welcome')->with([
             'products' => $products,
+            'categories' => $categories,
         ]);
     }
 }
