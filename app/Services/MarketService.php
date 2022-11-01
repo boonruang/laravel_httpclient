@@ -38,7 +38,10 @@ class MarketService {
      */
 
     public function decodeResponse($response){
-        //
+
+        $decodedResponse = json_decode($response);
+
+        return $decodedResponse->data ?? $decodedResponse;
     }
 
     /**
