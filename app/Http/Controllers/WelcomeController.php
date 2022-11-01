@@ -16,6 +16,8 @@ class WelcomeController extends Controller
     public function showWelcomePage()
     {
         $products = $this->marketService->getProducts();
+        // dd($products);
+
         return view('welcome')->with([
             'products' => $products,
         ]);

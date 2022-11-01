@@ -12,8 +12,8 @@ trait ConsumesExternalServices {
             'base_uri' => $this->baseUri,
         ]);
 
-        if (method_exists($this, 'resoleAuthorization')) {
-            $this->resoleAuthorization($queryParams, $formParams, $headers);
+        if (method_exists($this, 'resolveAuthorization')) {
+            $this->resolveAuthorization($queryParams, $formParams, $headers);
         }
 
 
@@ -26,7 +26,7 @@ trait ConsumesExternalServices {
         $response = $response->getBody()->getContents();
 
         if (method_exists($this, 'decodeResponse')) {
-            $this->decodeResponse($response);
+            $response = $this->decodeResponse($response);
         }
 
         if (method_exists($this, 'checkIfErrorResponse')) {
