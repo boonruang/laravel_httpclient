@@ -23,6 +23,8 @@ Route::controller(WelcomeController::class)->group(function() {
     Route::get('/', 'showWelcomePage')->name('welcome');
 });
 
+Route::get('products/{title}-{id}', 'ProductController@showProduct')->name('product.show');
+
 // Auth::routes(['register' => false, 'reset' => false , 'verify' => false]);
 
 Route::auth([
