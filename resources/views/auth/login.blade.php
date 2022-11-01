@@ -59,7 +59,7 @@
 
                                 <a href="#" class="btn btn-success">
                                     Connect with API
-                                </a>
+                                </a>                                
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">

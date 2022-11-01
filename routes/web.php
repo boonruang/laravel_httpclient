@@ -23,6 +23,13 @@ Route::controller(WelcomeController::class)->group(function() {
     Route::get('/', 'showWelcomePage')->name('welcome');
 });
 
-Auth::routes();
+// Auth::routes(['register' => false, 'reset' => false , 'verify' => false]);
+
+Route::auth([
+    'register' => false, // Registration Routes...
+    'reset' => false, // Password Reset Routes...
+    'verify' => false, // Email Verification Routes...
+  ]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
