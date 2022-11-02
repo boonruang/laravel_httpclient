@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Services\MarketAuthenticationService;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -68,7 +69,15 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function authorization() {
+    public function authorization(Request $request) {
+        if ($request->has('code')) {
+            $tokenData = $this->marketAuthenticationService->getCodeToken($request->code);
 
+            dd($tokenData);
+            
+            return;
+        }
+
+        return redirect()->route('login')->withErrors(['You cancelled the authorization process']);
     }
 }
