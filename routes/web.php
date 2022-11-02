@@ -4,10 +4,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryProductController;
+use App\Http\Controllers\Auth\LoginController;
 
 
 Route::controller(WelcomeController::class)->group(function() {
     Route::get('/', 'showWelcomePage')->name('welcome');
+});
+
+Route::controller(LoginController::class)->group(function() {
+    Route::get('authorization', 'authorization')->name('authorization');
 });
 
 Route::controller(ProductController::class)->group(function() {
