@@ -60,7 +60,7 @@ class MarketAuthenticationService {
          'client_secret' => $this->clientSecret,
       ];
 
-      $this->makeRequest('POST', 'oauth/token', [], $formParams);
+      $tokenData = $this->makeRequest('POST', 'oauth/token', [], $formParams);
 
       return "{$tokenData->token_type} {$tokenData->access_token}";
     }
