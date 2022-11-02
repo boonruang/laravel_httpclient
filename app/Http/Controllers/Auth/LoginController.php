@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Services\MarketAuthenticationService;
+use App\Services\MarketService;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
@@ -43,10 +44,13 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct(MarketAuthenticationService $marketAuthenticationService)
+    public function __construct(MarketAuthenticationService $marketAuthenticationService, MarketService $marketService)
     {
         $this->middleware('guest')->except('logout');
+
         $this->marketAuthenticationService = $marketAuthenticationService;
+
+        parent::__construct($marketService);
     }
 
     /**
@@ -73,7 +77,10 @@ class LoginController extends Controller
         if ($request->has('code')) {
             $tokenData = $this->marketAuthenticationService->getCodeToken($request->code);
 
-            dd($tokenData);
+            $userData = $this->marketService->getUserInformation();
+
+            // dd($tokenData);
+            dd($userData);
             
             return;
         }

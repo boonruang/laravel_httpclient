@@ -53,6 +53,15 @@ class MarketService {
     public function getCategoryProduct($id) {
         return $this->makeRequest('GET',"categories/{$id}/products");
      }
+
+     /**
+     * Retrieve the user information from the API
+     * @return stdClass
+     */ 
+
+     public function getUserInformation(){
+        return $this->makeRequest('GET', 'users/me');
+     }
           
 
 }
