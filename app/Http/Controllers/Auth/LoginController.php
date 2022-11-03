@@ -8,6 +8,8 @@ use App\Services\MarketAuthenticationService;
 use App\Services\MarketService;
 use App\Models\User;
 
+use Auth;
+
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -83,12 +85,15 @@ class LoginController extends Controller
             $userData = $this->marketService->getUserInformation();
 
             $user = $this->registerOrUpdateUser($userData, $tokenData);
+
             
             // dd($tokenData);
             // dd($userData);
-            dd($user);
+            // dd($user);
+
+            $this->loginUser($user);
             
-            return;
+            return redirect()->intended('home');
         }
 
         return redirect()->route('login')->withErrors(['You cancelled the authorization process']);
@@ -113,5 +118,18 @@ class LoginController extends Controller
                 'token_expires_at' => $tokenData->token_expires_at,
             ]
         );
+    }
+
+    /**
+     * Create a user session in the HTTP Client
+     *
+     * @return void
+     */    
+
+    public function loginUser(User $user, $remember = true) {
+
+        Auth::login($user, $remember);
+
+        session()->regenerate();
     }
 }
