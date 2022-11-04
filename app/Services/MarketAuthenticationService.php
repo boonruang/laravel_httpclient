@@ -126,8 +126,8 @@ class MarketAuthenticationService {
          'grant_type' => 'password',
          'client_id' => $this->passwordClientId,
          'client_secret' => $this->passwordClientSecret,
-         'username' => $this->username,
-         'password' => $this->password,
+         'username' => $username,
+         'password' => $password,
          'scope' => 'purchase-product manage-products manage-account read-general'
       ];
 
