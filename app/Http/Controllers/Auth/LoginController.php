@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Auth;
 
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-// use Illuminate\Foundation\Auth\authbackend\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller

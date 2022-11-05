@@ -5,6 +5,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\HomeController;
 
 
 Route::controller(WelcomeController::class)->group(function() {
@@ -17,7 +18,10 @@ Route::controller(LoginController::class)->group(function() {
 
 Route::controller(ProductController::class)->group(function() {
     Route::get('products/{title}-{id}', 'showProduct')->name('products.show');
-});
+    Route::get('products/{title}-{id}/purchase', 'purchaseProduct')->name('products.purchase');
+    Route::get('products/publish', 'showPublishProductForm')->name('products.publish');
+    Route::post('products/publish', 'publishProduct');
+});    
 
 Route::controller(CategoryProductController::class)->group(function() {
     Route::get('categories/{title}-{id}/products', 'showProducts')->name('categories.products.show');
@@ -30,5 +34,8 @@ Route::auth([
     'verify' => false, // Email Verification Routes...
   ]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::controller(HomeController::class)->group(function() {  
+    Route::get('/home', 'index')->name('home');
+    Route::get('/home/purchases', 'showPurchases')->name('purchases');
+    Route::get('/home/products', 'showProducts')->name('products');
+});

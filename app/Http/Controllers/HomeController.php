@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\MarketService;
+
 
 class HomeController extends Controller
 {
@@ -11,9 +13,11 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(MarketService $marketService)
     {
         $this->middleware('auth');
+
+        parent::__construct($marketService);
     }
 
     /**
@@ -25,4 +29,25 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    /**
+     * Obtain and show the list of purchases
+     *
+     * @return  \Illuminate\Contracts\Support\Renderable
+     */
+
+    public function showPurchases(){
+
+    }
+
+    /**
+     * Obtain and show the list of publiched products
+     *
+     * @return  \Illuminate\Contracts\Support\Renderable
+     */
+
+    public function showProducts(){
+
+    }
+
 }
