@@ -36,8 +36,12 @@ class HomeController extends Controller
      * @return  \Illuminate\Contracts\Support\Renderable
      */
 
-    public function showPurchases(){
+    public function showPurchases(Request $request){
+        $purchases = $this->marketService->getPurchases($request->user()->service_id);
 
+        return view('purchases')->with([
+            'purchases' => $purchases
+        ]);
     }
 
     /**
