@@ -64,6 +64,25 @@ class MarketService {
          "products/{$productId}/categories/{$categoryId}",
       );
      }
+
+     /**
+     * Update an existing product
+     * @return stdClass
+     */      
+
+     public function updateProduct($sellerId, $productId, $productData){
+
+      $productData['_method'] = 'PUT';
+
+      return $this->makeRequest(
+         'POST',
+         "sellers/{$sellerId}/products/{$productId}",
+         [],
+         $productData,
+         [],
+         $hasFile = isset($productData['picture'])
+      );      
+     }
      
      /**
      * Obtains the list of categories from the API
