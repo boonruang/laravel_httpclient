@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Services\MarketService;
+
 
 class User extends Authenticatable
 {
@@ -44,4 +46,11 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [];
+
+    public function getNameAttribute() {
+        $marketService = resolve(MarketService::class);
+
+        $userInformation = $marketService->getUserInformation();
+        return $userInformation->name;
+    }
 }
