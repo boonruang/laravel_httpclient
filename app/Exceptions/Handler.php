@@ -60,20 +60,21 @@ class Handler extends ExceptionHandler
      * @return \Illuminate\Http\Response
      */    
 
-    public function render($request, Exception $exception)
-    {
-        if ($exception instanceof ClientException) {
-            return $this->handleClientException($exception, $request);
-        }
+    // public function render($request, Exception $exception)
+    // {
+    //     if ($exception instanceof ClientException) {
+    //         return $this->handleClientException($exception, $request);
+    //     }
 
-        return parent::render($request, $exception);
-    }   
+    //     return parent::render($request, $exception);
+    // }   
 
 
     /**
      * Handle correctly the exceptions when sending requests
      * @return \Illuminate\Http\Response
      */
+
     protected function handleClientException($exception, $request)
     {
         $code = $exception->getCode();
@@ -96,8 +97,9 @@ class Handler extends ExceptionHandler
                 abort(500, 'Error authenticating the request. Try again later.');
 
             default:
-                return redirect()->back()->withErrors(['message' => $errorMessage]);
+                // return redirect()->back()->withErrors(['message' => $errorMessage]);
+                break;
         }
     }
-        
+
 }
