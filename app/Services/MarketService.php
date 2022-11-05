@@ -38,7 +38,7 @@ class MarketService {
      }
 
      /**
-     * Puublish a product on the API
+     * Publish a product on the API
      * @return stdClass
      */      
 
@@ -50,6 +50,18 @@ class MarketService {
          $productData,
          [],
          $hasFile = true
+      );
+     }
+
+     /**
+     * Associate a product on the category
+     * @return stdClass
+     */     
+
+     public function setProductCategory($productId, $categoryId){
+      return $this->makeRequest(
+         'PUT',
+         "products/{$productId}/categories/{$categoryId}",
       );
      }
      
