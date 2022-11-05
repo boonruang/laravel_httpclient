@@ -60,8 +60,21 @@ class ProductController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */       
 
-    public function publishProduct(){
+    public function publishProduct(Request $request){
+        $rules = [
+            'title' => 'required',
+            'details' => 'required',
+            'stock' => 'required|min:1',
+            'picture' => 'required|image',
+            'category' => 'required',
+        ];
 
+        $productData = $this->validate($request, $rules);
+        $productData['picture'] = fopen($request->picture->path(), 'r');
+
+        $productData = $this->marketService->publishProduct($request->user()->service_id, $productData);
+
+        return redirect()->route('products.show',['title' => $productData->title, 'id' => $productData->identifier])->with('success',['Product created successfully']);
     }
 
 }
