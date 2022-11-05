@@ -41,8 +41,16 @@ class ProductController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */      
 
-    public function purchaseProduct(){
+    public function purchaseProduct(Request $request, $title, $id){
 
+        $this->marketService->purchaseProduct($id, $request->user()->service_id, 1);
+
+        return redirect()
+            ->route('products.show',[
+                'title' => $title,
+                'id' => $id
+                ])
+            ->with('success',['Product purchased']);
     }
 
      /**
@@ -54,6 +62,7 @@ class ProductController extends Controller
         $categories = $this->marketService->getCategories();
         return view('products.publish')->with(['categories' => $categories]);
     }
+
 
      /**
      * Create the product on the API

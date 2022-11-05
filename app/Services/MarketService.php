@@ -83,6 +83,20 @@ class MarketService {
          $hasFile = isset($productData['picture'])
       );      
      }
+
+     /**
+     * Allow to purchase a proudct
+     * @return stdClass
+     */         
+
+     public function purchaseProudct($productId, $buyerId, $quantity){
+      return $this->makeRequest(
+         'POST',
+         "products/{$productId}/buyers/{$buyerId}/transactions",
+         [],
+         ['quantity' => $quantity]
+      ); 
+     }
      
      /**
      * Obtains the list of categories from the API
