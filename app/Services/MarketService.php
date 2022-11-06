@@ -89,7 +89,7 @@ class MarketService {
      * @return stdClass
      */         
 
-     public function purchaseProudct($productId, $buyerId, $quantity){
+     public function purchaseProduct($productId, $buyerId, $quantity){
       return $this->makeRequest(
          'POST',
          "products/{$productId}/buyers/{$buyerId}/transactions",
